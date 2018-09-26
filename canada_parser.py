@@ -13,8 +13,10 @@ url = "https://www.myscouts.ca/ca/netforum_locator/search"
 postal_codes = list(map(''.join, itertools.product(postal_start, digit, postal_letter, digit, postal_letter, digit)))
 data = set()
 
-data = re.findall("\"latitude\": \"(-?[0-9]*\.[0-9]*)\"\, \"longitude\": \"(-?[0-9]*\.[0-9]*)\"", r.text)
+rs = (grequests.post(url, data=dict(payload, **{'zip': pc})) for pc in random.sample(postal_codes, 100))
+for response in grequests.map(rs):
+  data.update(re.findall("\"latitude\": \"(-?[0-9]*\.[0-9]*)\"\, \"longitude\": \"(-?[0-9]*\.[0-9]*)\"", response.text))
+
 
 print(data)
-
-
+print(len(data))  
