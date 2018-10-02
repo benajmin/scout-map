@@ -1,17 +1,21 @@
+# Script for determining all valid canadian postal codes
 import grequests
 import itertools
-import random
 import re
 
 digit = '0123456789'
 postal_letter = 'ABCEGHJKLMNPRSTVWXYZ'
-postal_start = 'ABCEGHJKLMNPRSTVXY'
+# Download list of postal prefixes from http://download.geonames.org/export/dump/
 postal_prefixes = sorted(re.findall("\t([A-Z][0-9][A-Z])\t", open("CA.txt").read()))
 postal_codes = list(map(''.join, itertools.product(postal_prefixes, digit, postal_letter, digit)))
-real_pcs = []
 f = open('postalCodes.txt', 'a')
 err = open('err.txt', 'a')
 
+
+# Use prefixes to generate all possible postal codes and check if their correct
+# Sometimes errors are returned. It just saves them to be rerun later (see below)
+# Sometimes will freeze and stop printing, just end the program and restart with
+# start set to last printed value
 
 def run(start):
   for i in range(postal_codes.index(start), len(postal_codes), 75):
@@ -27,6 +31,10 @@ def run(start):
       if response:
         response.close()
     
+# Reruns all postal codes that returned errors
+# Use uniq err.txt > uniq_error.txt to remove duplicate error codes
+# May have to do this multiple times
+
 def run_err():
   for i in open('uniq_err.txt', 'r'):
     rs = (grequests.get("http://www.canada411.ca/search/?stype=pc&pc="+code, stream=False) for code in postal_codes[int(i):int(i)+75])
