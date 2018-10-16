@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Benjamin Wilkins</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+      #map {
+        height: 700px;
+      }
+    </style>
+	</head>
+	
+	<body>
+		<div class="container-fluid" id = "body">
+			<div id="nav-placeholder"></div>
+			<div class= "content well">
+				
+        <div id="map"></div>
+			</div>
+		
+			<div id="foot-placeholder"></div>
+		</div>
+		
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKBNRu0dTfdSHm4Io-zNOpyJavU_pHees&callback=initMap" async defer></script>
+		<script>
+		$(function(){
+			  $("#nav-placeholder").load("../navbar.html");
+		});
+		$(function(){
+			  $("#foot-placeholder").load("../footer.html");
+		});
+		</script>	
+	</body>
+</html> 
