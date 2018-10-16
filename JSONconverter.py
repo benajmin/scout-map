@@ -12,6 +12,10 @@ for i in re.findall(r'^<.*$', source, re.MULTILINE):
   group['Meeting Time'] = re.search(r'Meeting Time: ([^<]*)', i).group(1)
   group['Meeting Location'] = re.search(r'Meeting Location: ([^<]*)', i).group(1)
   group['Registration Fee'] = re.search(r'Registration Fee: ([^<]*)', i).group(1)
+  if re.search(r'Program runs throughout the summer', i):
+    group['Summer Program'] = True
+  else:
+    group['Summer Program'] = False
   pattern = r'^".*' + group['Name'].replace("'", "\\\\'").replace("(", "\\(").replace(")", "\\)")
   line2 = re.search(pattern, source, re.MULTILINE)
   if (line2):
