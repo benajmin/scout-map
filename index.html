@@ -12,8 +12,9 @@
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKBNRu0dTfdSHm4Io-zNOpyJavU_pHees&libraries=visualization"></script>
     <style>
-      #map {
-        height: 700px;
+      #map, #heatmap {
+        height: 80vh;
+        margin: 5vh;
       }
     </style>
 	</head>
@@ -22,8 +23,11 @@
 		<div class="container-fluid" id = "body">
 			<div id="nav-placeholder"></div>
 			<div class= "content well">
+				<h1><a href="https://github.com/benajmin/scout-map">Scout Map</a></h1>
+				<h6>October 2018</h6>
 				
         <div id="map"></div>
+        <div id="heatmap"></div>
 			</div>
 		
 			<div id="foot-placeholder"></div>
