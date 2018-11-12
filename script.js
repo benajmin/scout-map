@@ -37,7 +37,8 @@ $.getJSON("canada.json", function(data) {
     var marker = new google.maps.Marker({
       position: items[items.length - 1],
       map: map,
-      title: group['Name']
+      title: group['Name'],
+      icon: 'marker.png'
     });
     marker.addListener('click', displayInfoWindow(infowindows[infowindows.length-1], map, marker));
     markers.push(marker)
