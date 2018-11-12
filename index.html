@@ -18,21 +18,29 @@
       }
     </style>
 	</head>
-	
+
 	<body>
 		<div class="container-fluid" id = "body">
 			<div id="nav-placeholder"></div>
 			<div class= "content well">
 				<h1><a href="https://github.com/benajmin/scout-map">Scout Map</a></h1>
 				<h6>October 2018</h6>
-				
+
         <div id="map"></div>
         <div id="heatmap"></div>
+
+        <p>Let's be up front about it, there are several limitations to this map. It contains only Scouta Canada scout troops. It does not list beaver colonies, cub packs, venturer companies or rover crews. Additionally this data was scraped from the Scouts Canada website on October 2014. There may be groups missing and any changes made after that date are not reflected in the data</p>
+
+        <p>Now that that's out of the way, let's talk about the why. It all started because a found <a href="http://wiki.scouts.ca/en/Council">a map of Scouts Canada councils</a> that listed Nunavut as part of Voyageur Council. This immediate made me wonder if there are actually any scout groups in Nunavut. However this turned out to be a difficult question to answer. Scous Canada offers no maps or lists of all scout groups. The only information available is through the <a href="https://www.myscouts.ca/ca/netforum_locator/search">group finder</a> which lists the 10ish closest groups to a given postal code. I thought this was ridiculous and took it upon myself to make the information available</p>
+
+        <p>So the obvious course of action was to automate scraping data from the group finder. I quickly setup a python script to enter a postal code into the group finder and save the results. However with over 8 million possible postal codes the time required to check them all was unacceptable. After the addition of some multithreading, as well as some <a href="bwilkins.me/blog/postal_codes/index/html">adventures in pairing down the list of postal codes</a> the run time was down to a few days. Since seperate requests need to be made for each section, I chose to only scrape troop data in order to get results quickly.  </p>
+
+        <p>Once I had a list of groups it was a simple task to parse that with some RegEx, convert it to a JSON file and feed it into the Google Maps API in order to create the maps above</p>
 			</div>
-		
+
 			<div id="foot-placeholder"></div>
 		</div>
-		
+
     <script src="script.js"></script>
 		<script>
 		$(function(){
@@ -41,6 +49,6 @@
 		$(function(){
 			  $("#foot-placeholder").load("../footer.html");
 		});
-		</script>	
+		</script>
 	</body>
-</html> 
+</html>
